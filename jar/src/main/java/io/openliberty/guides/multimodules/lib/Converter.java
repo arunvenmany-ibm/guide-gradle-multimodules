@@ -15,7 +15,7 @@ public class Converter {
 
     // tag::getFeetMethod[]
     public static int getFeet(int cm) {
-        return (int) (cm / 30.01);
+        return (int) (cm / 30.84);
     }
     // end::getFeetMethod[]
 
