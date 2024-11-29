@@ -7,8 +7,7 @@
 //   IBM Corporation
 :projectid: gradle-multimodules
 :page-layout: guide-multipane
-:page-duration: 30 min
-utes
+:page-duration: 30 minutes
 :page-releasedate: 2024-11-29
 :page-majorupdateddate: 2024-11-29
 :page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with gradle
