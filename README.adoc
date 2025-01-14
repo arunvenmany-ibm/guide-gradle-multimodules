@@ -1,4 +1,4 @@
-// Copyright (c) 2024 IBM Corporation and others.
+// Copyright (c) 2025 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -8,12 +8,11 @@
 :projectid: gradle-multimodules
 :page-layout: guide-multipane
 :page-duration: 30 minutes
-:page-releasedate: 2024-11-29
-:page-majorupdateddate: 2024-11-29
+:page-releasedate: 2025-01-29
 :page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with gradle
 :page-related-guides: ['gradle-intro']
 :page-seo-title: Building a multi-module enterprise Java application with Gradle and Open Liberty
-:page-seo-description: A getting started tutorial and an example on how to use gradle to build a Java or Jakarta EE application with multiple modules consisting of Java archive (JAR), web archive (WAR), and enterprise archive (EAR) projects.
+:page-seo-description: A getting started tutorial and an example on how to use Gradle to build a Java or Jakarta EE application with multiple modules consisting of Java archive (JAR), web archive (WAR), and enterprise archive (EAR) projects.
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
@@ -63,7 +62,7 @@ Access partial implementation of the application from the `start` folder. This f
 
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
 
-To try out the application, first go to the `finish` directory and run the following gradle goal to build the War and Jar application:
+To try out the application, first go to the `finish` directory and run the following Gradle goal to build the War and Jar application:
 
 [role=command]
 ----
@@ -71,7 +70,7 @@ cd finish
 ./gradlew clean libertyPackage
 ----
 
-To deploy your EAR application on Open Liberty, run the gradle `libertyRun` goal from the finish directory .
+To deploy your EAR application on Open Liberty, run the Gradle `libertyRun` goal from the finish directory .
 
 [role=command]
 ----
@@ -148,7 +147,7 @@ include::finish/ear/build.gradle[]
 Apply the `liberty` and `ear` plugin to configure the project as `ear`
 The `war` project is added as a Project dependency and `webModule` is specified in deployment descriptor to provide context path as `/converter`
 
-If no context path is specified, gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the application.xml file.
+If no context path is specified, Gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the application.xml file.
 
 To deploy and run an EAR application on an Open Liberty instance, you need to provide a Liberty's `server.xml` configuration file.
 
@@ -171,7 +170,7 @@ You must configure the `server.xml` configuration file with the [hotspot=EARdefi
 
 == Aggregating the entire build
 
-Because you have multiple modules, aggregate the gradle projects to simplify the build process.
+Because you have multiple modules, aggregate the Gradle projects to simplify the build process.
 `settings.gradle` is used to specify multiple modules
 
 [role="code_command hotspot", subs="quotes"]
@@ -209,7 +208,7 @@ Set the [hotspot=packaging file=0]`basic configuration` for the project. Apply [
 
 == Developing the application
 
-You can now develop the application and the different modules together in dev mode by using the Liberty gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/dev.md#multiple-modules[Documentation^].
+You can now develop the application and the different modules together in dev mode by using the Liberty Gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/dev.md#multiple-modules[Documentation^].
 
 Navigate to the `start` directory to begin.
 // cloud hosted instructions
@@ -219,12 +218,22 @@ cd /home/project/guide-gradle-multimodules/start
 ```
 endif::[]
 
-To deploy your EAR application on Open Liberty and start in dev mode, run the gradle `libertyDev` goal from the start directory .
+When you run Open Liberty in https://openliberty.io/docs/latest/development-mode.html[dev mode^], dev mode listens for file changes and automatically recompiles and deploys your updates whenever you save a new change. Run the following goal to start Open Liberty in dev mode:
 
-[role=command]
+[role="command"]
 ----
-./gradlew clean libertyRun
+./gradlew clean libertyDev
 ----
+
+After you see the following message, your Liberty instance is ready in dev mode:
+
+[role="no_copy"]
+----
+**************************************************************
+*    Liberty is running in dev mode.
+----
+
+Dev mode holds your command-line session to listen for file changes. Open another command-line session to continue, or open the project in your editor.
 
 === Updating the Java classes in different modules
 
@@ -348,7 +357,7 @@ cd /home/project/guide-gradle-multimodules/start
 ```
 endif::[]
 
-Since the modules are independent, you can re-build them individually by running `./gradlew clean build` from the corresponding `start` directory for each module.
+Because the modules are independent, you can re-build them individually by running `./gradlew clean build` from the corresponding `start` directory for each module.
 
 ifndef::cloud-hosted[]
 Or, run `./gradlew <child project>:build` from the start directory.
@@ -363,7 +372,7 @@ endif::[]
 
 == Great work! You're done!
 
-You built and tested a multi-module Java application for unit conversion with gradle on Open Liberty.
+You built and tested a multi-module Java application for unit conversion with Gradle on Open Liberty.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
