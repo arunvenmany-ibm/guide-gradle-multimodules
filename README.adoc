@@ -9,7 +9,7 @@
 :page-layout: guide-multipane
 :page-duration: 30 minutes
 :page-releasedate: 2025-01-29
-:page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with gradle
+:page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with Gradle
 :page-related-guides: ['gradle-intro']
 :page-seo-title: Building a multi-module enterprise Java application with Gradle and Open Liberty
 :page-seo-description: A getting started tutorial and an example on how to use Gradle to build a Java or Jakarta EE application with multiple modules consisting of Java archive (JAR), web archive (WAR), and enterprise archive (EAR) projects.
@@ -17,7 +17,7 @@
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 :guide-author: Open Liberty
-= Creating a multi-module application
+= Creating a multi-module application with Gradle
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website^].
