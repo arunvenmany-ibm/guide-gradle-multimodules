@@ -1,7 +1,6 @@
-
-description = 'EJB Modules'
-
 apply plugin: 'java'
+
+description = 'JAR Module'
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
@@ -11,12 +10,16 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
 }
+
 test{
     useJUnitPlatform()
 }
+
 jar {
-    archiveFileName = rootProject.name+"-"+getArchiveBaseName().get() +"-"+rootProject.version+ '.' + getArchiveExtension().get()
+    archiveFileName = rootProject.name + "-" + getArchiveBaseName().get() + "-" +
+                      rootProject.version + '.' + getArchiveExtension().get()
 }

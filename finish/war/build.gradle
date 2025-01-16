@@ -1,19 +1,23 @@
-
 apply plugin: 'war'
 
-description = 'WAR Modules'
+description = 'WAR Module'
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
     compileOnly 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
     implementation project(':jar')
     compileOnly 'org.eclipse.microprofile:microprofile:7.0'
 }
+
 test{
     useJUnitPlatform()
 }
+
 war {
     archiveFileName = rootProject.name+"-"+getArchiveBaseName().get() +"-"+rootProject.version+ '.' + getArchiveExtension().get()
 }
 
+// tag::dependsOn[]
 war.dependsOn ':jar:jar'
+// end::dependsOn[]
 
