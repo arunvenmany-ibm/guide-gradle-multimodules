@@ -170,7 +170,8 @@ You must configure the `server.xml` configuration file with the [hotspot=EARdefi
 == Aggregating the entire build
 
 Because you have multiple modules, aggregate the Gradle projects to simplify the build process.
-`settings.gradle` is used to specify multiple modules
+
+The `settings.gradle` is used to specify multiple modules.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -182,7 +183,8 @@ start/settings.gradle
 ----
 include::finish/settings.gradle[]
 ----
-Include all project directories
+
+Include the [hotspot=includeJar hotspot=jarDir file=0]`jar`,[hotspot=includeWar hotspot=warDir file=0]`war`, and [hotspot=includeEar hotspot=earDir file=0]`ear` project and their directories.
 
 Create a parent [hotspot]`build.gradle` file under the `start` directory to link all of the child modules together. A template is provided for you.
 
