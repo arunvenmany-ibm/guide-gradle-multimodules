@@ -184,7 +184,7 @@ start/settings.gradle
 include::finish/settings.gradle[]
 ----
 
-Include the [hotspot=includeJar hotspot=jarDir file=0]`jar`, [hotspot=includeWar hotspot=warDir file=0]`war`, and [hotspot=includeEar hotspot=earDir file=0]`ear` project and their directories.
+Include the [hotspot=includeJar hotspot=jarDir file=0]`jar`, [hotspot=includeWar hotspot=warDir file=0]`war`, and [hotspot=includeEar hotspot=earDir file=0]`ear` projects and their directories.
 
 Create a parent [hotspot file=1]`build.gradle` file under the `start` directory to link all of the child modules together. A template is provided for you.
 

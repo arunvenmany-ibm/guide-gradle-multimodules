@@ -17,7 +17,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.openliberty.tools:liberty-gradle-plugin:$lgpVersion"
+        classpath "io.openliberty.tools:liberty-gradle-plugin:3.9.2"
     }
 }
 
@@ -30,8 +30,7 @@ dependencies {
     // tag::war[]
     deploy project(path:':war', configuration:'archives')
     // end::war[]
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
-    libertyRuntime group: runtimeGroup, name: kernelArtifactId, version: runtimeVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
 }
 
 // tag::earConfig[]
