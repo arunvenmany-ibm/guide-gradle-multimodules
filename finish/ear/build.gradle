@@ -1,5 +1,9 @@
+// tag::ear[]
 apply plugin: 'ear'
+// end::ear[]
+// tag::liberty[]
 apply plugin: 'liberty'
+// end::liberty[]
 
 description = 'EAR Module'
 
@@ -23,11 +27,14 @@ repositories {
 }
 
 dependencies {
+    // tag::war[]
     deploy project(path:':war', configuration:'archives')
+    // end::war[]
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
     libertyRuntime group: runtimeGroup, name: kernelArtifactId, version: runtimeVersion
 }
 
+// tag::earConfig[]
 ear {
     archiveFileName = rootProject.name + "-" + getArchiveBaseName().get() + "-" +
                       rootProject.version + '.' + getArchiveExtension().get()
@@ -35,7 +42,9 @@ ear {
         webModule ('guide-gradle-multimodules-war-1.0-SNAPSHOT.war', '/converter')
     }
 }
+// end::earConfig[]
 
+// tag::libertyConfig[]
 liberty {
     server {
         name = "sampleLibertyServer"
@@ -47,6 +56,11 @@ liberty {
         looseApplication = true
     }
 }
+// end::libertyConfig[]
 
+// tag::deployDependsOn[]
 deploy.dependsOn 'ear'
+// end::deployDependsOn[]
+// tag::earDependsOn[]
 ear.dependsOn ':jar:jar', ':war:war'
+// end::earDependsOn[]

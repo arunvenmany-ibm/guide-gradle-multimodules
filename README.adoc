@@ -141,8 +141,10 @@ ear/build.gradle
 ----
 include::finish/ear/build.gradle[]
 ----
-Apply the `liberty` and `ear` plugin to configure the project as `ear`
-The `war` project is added as a Project dependency and `webModule` is specified in deployment descriptor to provide context path as `/converter`
+
+Define the [hotspot=ear file=0]`ear` and [hotspot=liberty file=0]`liberty` plug-ins that you want to use. Configure the [hotspot=earConfig file=0]`ear` task with the deployment descriptor that provides the web module `war` file name and the context root as `/converter`. Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as `sampleLibertyServer` and deploys the ear file from the path specified by the `copyLibsDirectory` variable.
+
+The [hotspot=war file=0]`war` project is added as a project dependency. The [hotspot=deployDependsOn file=0]`deploy` task depends on the `ear` task and the [hotspot=earDependsOn file=0]`ear` task depends on the `jar` task from the `jar` project and the `war` task from the `war` project.
 
 If no context path is specified, Gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the application.xml file.
 

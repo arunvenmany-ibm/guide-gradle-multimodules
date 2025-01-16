@@ -1,6 +1,3 @@
-apply plugin: 'ear'
-apply plugin: 'liberty'
-
 description = 'EAR Module'
 
 buildscript {
@@ -23,30 +20,6 @@ repositories {
 }
 
 dependencies {
-    deploy project(path:':war', configuration:'archives')
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
     libertyRuntime group: runtimeGroup, name: kernelArtifactId, version: runtimeVersion
 }
-
-ear {
-    archiveFileName = rootProject.name + "-" + getArchiveBaseName().get() + "-" +
-                      rootProject.version + '.' + getArchiveExtension().get()
-    deploymentDescriptor {
-        webModule ('guide-gradle-multimodules-war-1.0-SNAPSHOT.war', '/converter')
-    }
-}
-
-liberty {
-    server {
-        name = "sampleLibertyServer"
-        deploy {
-            apps = [ear]
-            copyLibsDirectory = file("${project.getLayout().getBuildDirectory().getAsFile().get()}/libs")
-        }
-        verifyAppStartTimeout = 30
-        looseApplication = true
-    }
-}
-
-deploy.dependsOn 'ear'
-ear.dependsOn ':jar:jar', ':war:war'
