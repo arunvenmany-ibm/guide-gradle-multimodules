@@ -175,10 +175,10 @@ The `settings.gradle` is used to specify multiple modules.
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the start/settings file.#
+#Replace the start/settings.gradle file.#
 `settings.gradle`
 ----
-start/settings.gradle
+finish/settings.gradle
 [source, xml, linenums, role='code_column']
 ----
 include::finish/settings.gradle[]
