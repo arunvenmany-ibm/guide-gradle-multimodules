@@ -39,7 +39,7 @@ ear {
     archiveFileName = rootProject.name + "-" + getArchiveBaseName().get() + "-" +
                       rootProject.version + '.' + getArchiveExtension().get()
     deploymentDescriptor {
-        webModule ('guide-gradle-multimodules-war-1.0-SNAPSHOT.war', '/converter')
+        webModule (archiveFileName, '/converter')
     }
 }
 // end::earConfig[]
