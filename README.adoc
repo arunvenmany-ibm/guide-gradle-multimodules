@@ -86,7 +86,6 @@ Once the Liberty instance is running, click the following button to check out yo
 endif::[]
 
 After you are finished checking out the application, stop the Open Liberty instance by pressing `CTRL+C` in the command-line session where you ran the Liberty. Alternatively, you can run the `libertyStop` task from the `finish` directory in another command-line session:
-You can run the `clean` task from the `finish` directory as well, which will internally call `libertyStop`:
 
 [role=command]
 ----
