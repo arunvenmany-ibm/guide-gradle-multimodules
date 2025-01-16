@@ -14,7 +14,6 @@ test{
 }
 
 war {
-    archiveFileName = rootProject.name+"-"+getArchiveBaseName().get() +"-"+rootProject.version+ '.' + getArchiveExtension().get()
+    archiveFileName = rootProject.name + "-" + getArchiveBaseName().get() + "-" +
+                      rootProject.version + '.' + getArchiveExtension().get()
 }
-
-

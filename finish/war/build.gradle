@@ -3,9 +3,11 @@ apply plugin: 'war'
 description = 'WAR Module'
 
 dependencies {
+    // tag::projectJar[]
+    implementation project(':jar')
+    // end::projectJar[]
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
     compileOnly 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
-    implementation project(':jar')
     compileOnly 'org.eclipse.microprofile:microprofile:7.0'
 }
 
