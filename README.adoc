@@ -184,22 +184,22 @@ finish/settings.gradle
 include::finish/settings.gradle[]
 ----
 
-Include the [hotspot=includeJar hotspot=jarDir file=0]`jar`,[hotspot=includeWar hotspot=warDir file=0]`war`, and [hotspot=includeEar hotspot=earDir file=0]`ear` project and their directories.
+Include the [hotspot=includeJar hotspot=jarDir file=0]`jar`, [hotspot=includeWar hotspot=warDir file=0]`war`, and [hotspot=includeEar hotspot=earDir file=0]`ear` project and their directories.
 
-Create a parent [hotspot]`build.gradle` file under the `start` directory to link all of the child modules together. A template is provided for you.
+Create a parent [hotspot file=1]`build.gradle` file under the `start` directory to link all of the child modules together. A template is provided for you.
 
-[role="code_command hotspot", subs="quotes"]
+[role="code_command hotspot file=1", subs="quotes"]
 ----
 #Replace the start/build file.#
 `build.gradle`
 ----
-start/build.gradle
+finish/build.gradle
 [source, xml, linenums, role='code_column']
 ----
 include::finish/build.gradle[]
 ----
 
-Set the [hotspot=packaging file=0]`basic configuration` for the project. Apply [gradle-java-plugin file=0]`gradle-java-plugin` to all sub projects. This allows each child module to inherit the plug-ins, so that you can use the these to develop the modules.
+Set the [hotspot=packaging file=1]`basic configuration` for the project. Apply [gradle-java-plugin file=1]`gradle-java-plugin` to all sub projects. This allows each child module to inherit the plug-ins, so that you can use the these to develop the modules.
 
 
 
