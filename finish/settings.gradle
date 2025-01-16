@@ -1,8 +1,20 @@
 rootProject.name = 'guide-gradle-multimodules'
+// tag::includeJar[]
 include ':jar'
+// end::includeJar[]
+// tag::includeWar[]
 include ':war'
+// end::includeWar[]
+// tag::includeEar[]
 include ':ear'
+// end::includeEar[]
 
+// tag::jarDir[]
 project(':jar').projectDir = "$rootDir/jar" as File
+// end::jarDir[]
+// tag::warDir[]
 project(':war').projectDir = "$rootDir/war" as File
+// end::warDir[]
+// tag::earDir[]
 project(':ear').projectDir = "$rootDir/ear" as File
+// end::earDir[]

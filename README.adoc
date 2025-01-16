@@ -112,7 +112,7 @@ endif::[]
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the war/build file.#
+#Replace the war/build.gradle file.#
 `war/build.gradle`
 ----
 war/build.gradle
@@ -133,7 +133,7 @@ To deploy the entire application on Open Liberty, first package the application.
 Navigate to the `ear` folder and find a template `build.gradle` file.
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the ear/build file.#
+#Replace the ear/build.gradle file.#
 `ear/build.gradle`
 ----
 ear/build.gradle
@@ -178,7 +178,7 @@ The `settings.gradle` is used to specify multiple modules.
 #Replace the start/settings.gradle file.#
 `settings.gradle`
 ----
-finish/settings.gradle
+start/settings.gradle
 [source, xml, linenums, role='code_column']
 ----
 include::finish/settings.gradle[]
@@ -190,10 +190,10 @@ Create a parent [hotspot file=1]`build.gradle` file under the `start` directory 
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
-#Replace the start/build file.#
+#Replace the start/build.gradle file.#
 `build.gradle`
 ----
-finish/build.gradle
+start/build.gradle
 [source, xml, linenums, role='code_column']
 ----
 include::finish/build.gradle[]
