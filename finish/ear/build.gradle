@@ -49,7 +49,7 @@ liberty {
         name = 'sampleLibertyServer'
         deploy {
             apps = [ear]
-            copyLibsDirectory = file('${project.getLayout().getBuildDirectory().getAsFile().get()}/libs')
+            copyLibsDirectory = file("${project.getLayout().getBuildDirectory().getAsFile().get()}/libs")
         }
         verifyAppStartTimeout = 30
         looseApplication = true
