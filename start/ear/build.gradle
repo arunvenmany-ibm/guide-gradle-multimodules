@@ -10,7 +10,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.openliberty.tools:liberty-gradle-plugin:3.9.2"
+        classpath 'io.openliberty.tools:liberty-gradle-plugin:3.9.2'
     }
 }
 

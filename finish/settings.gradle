@@ -10,11 +10,11 @@ include ':ear'
 // end::includeEar[]
 
 // tag::jarDir[]
-project(':jar').projectDir = "$rootDir/jar" as File
+project(':jar').projectDir = '$rootDir/jar' as File
 // end::jarDir[]
 // tag::warDir[]
-project(':war').projectDir = "$rootDir/war" as File
+project(':war').projectDir = '$rootDir/war' as File
 // end::warDir[]
 // tag::earDir[]
-project(':ear').projectDir = "$rootDir/ear" as File
+project(':ear').projectDir = '$rootDir/ear' as File
 // end::earDir[]
