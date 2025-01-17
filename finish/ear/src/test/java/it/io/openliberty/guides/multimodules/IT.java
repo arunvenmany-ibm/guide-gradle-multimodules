@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2017, 2024 IBM Corporation and others.
+ * Copyright (c) 2025 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -42,7 +42,7 @@ public class IT {
     public void testHeightsPage() throws Exception {
         String url = this.urlBase + "heights.jsp?heightCm=10";
         HttpURLConnection con = testRequestHelper(url, "POST");
-        assertTrue(testBufferHelper(con).contains("3    inches"),
+        assertTrue(testBufferHelper(con).contains("3        inches"),
                         "Incorrect response from " + url);
     }
     // end::testHeightsPage[]

@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2017, 2019 IBM Corporation and others.
+ * Copyright (c) 2025 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -42,26 +42,22 @@ public class HeightsBean implements java.io.Serializable {
     }
 
     // Need an input as placeholder, you can choose not to use the input
-    // tag::setHeightFeet[]
     public void setHeightFeet(String heightfeet) {
         this.cm = Integer.valueOf(heightCm);
-        // tag::getFeet[]
-        this.feet = io.openliberty.guides.multimodules.lib.Converter.getFeet(cm);
-        // end::getFeet[]
+        // tag::dependency-code1[]
+        // TO-DO: ADD THE getFeet CODE SNIPPET HERE
+        // end::dependency-code1[]
         String result = String.valueOf(feet);
         this.heightFeet = result;
     }
-    // end::setHeightFeet[]
 
-    // tag::setHeightInches[]
     public void setHeightInches(String heightinches) {
         this.cm = Integer.valueOf(heightCm);
-        // tag::getInches[]
-        this.inches = io.openliberty.guides.multimodules.lib.Converter.getInches(cm);
-        // end::getInches[]
+        // tag::dependency-code2[]
+        // TO-DO: ADD THE getInches CODE SNIPPET HERE
+        // end::dependency-code2[]
         String result = String.valueOf(inches);
         this.heightInches = result;
     }
-    // end::setHeightInches[]
 
 }
