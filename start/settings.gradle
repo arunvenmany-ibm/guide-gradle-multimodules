@@ -1,8 +1,1 @@
 rootProject.name = 'guide-gradle-multimodules'
-include ':jar'
-include ':war'
-include ':ear'
-
-project(':jar').projectDir = "$rootDir/jar" as File
-project(':war').projectDir = "$rootDir/war" as File
-project(':ear').projectDir = "$rootDir/ear" as File

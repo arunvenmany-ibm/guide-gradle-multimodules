@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2017, 2021 IBM Corporation and others.
+ * Copyright (c) 2025 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -15,15 +15,15 @@ public class Converter {
 
     // tag::getFeetMethod[]
     public static int getFeet(int cm) {
-        return (int) (cm / 30.84);
+        int feet = (int) (cm / 30.48);
+        return feet;
     }
     // end::getFeetMethod[]
 
     // tag::getInchesMethod[]
     public static int getInches(int cm) {
-        double feet = getFeet(cm);
+        double feet = cm / 30.48;
         int inches = (int) (cm / 2.54) - ((int) feet * 12);
-        System.out.println(inches);
         return inches;
     }
     // end::getInchesMethod[]

@@ -1,4 +1,4 @@
-// Copyright (c) 2024 IBM Corporation and others.
+// Copyright (c) 2025 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -8,17 +8,16 @@
 :projectid: gradle-multimodules
 :page-layout: guide-multipane
 :page-duration: 30 minutes
-:page-releasedate: 2024-11-29
-:page-majorupdateddate: 2024-11-29
-:page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with gradle
+:page-releasedate: 2025-01-29
+:page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with Gradle
 :page-related-guides: ['gradle-intro']
 :page-seo-title: Building a multi-module enterprise Java application with Gradle and Open Liberty
-:page-seo-description: A getting started tutorial and an example on how to use gradle to build a Java or Jakarta EE application with multiple modules consisting of Java archive (JAR), web archive (WAR), and enterprise archive (EAR) projects.
+:page-seo-description: A getting started tutorial and an example on how to use Gradle to build a Java or Jakarta EE application with multiple modules consisting of Java archive (JAR), web archive (WAR), and enterprise archive (EAR) projects.
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 :guide-author: Open Liberty
-= Creating a multi-module application
+= Creating a multi-module application with Gradle
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website^].
@@ -63,7 +62,7 @@ Access partial implementation of the application from the `start` folder. This f
 
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
 
-To try out the application, first go to the `finish` directory and run the following gradle goal to build the War and Jar application:
+To try out the application, first go to the `finish` directory and run the following Gradle task to build the application:
 
 [role=command]
 ----
@@ -71,7 +70,7 @@ cd finish
 ./gradlew clean libertyPackage
 ----
 
-To deploy your EAR application on Open Liberty, run the gradle `libertyRun` goal from the finish directory .
+To deploy your EAR application on Open Liberty, run the Gradle `libertyRun` task from the finish directory.
 
 [role=command]
 ----
@@ -87,7 +86,6 @@ Once the Liberty instance is running, click the following button to check out yo
 endif::[]
 
 After you are finished checking out the application, stop the Open Liberty instance by pressing `CTRL+C` in the command-line session where you ran the Liberty. Alternatively, you can run the `libertyStop` task from the `finish` directory in another command-line session:
-You can run the `clean` task from the `finish` directory as well, which will internally call `libertyStop`:
 
 [role=command]
 ----
@@ -114,7 +112,7 @@ endif::[]
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the war/build file.#
+#Replace the war/build.gradle file.#
 `war/build.gradle`
 ----
 war/build.gradle
@@ -122,9 +120,7 @@ war/build.gradle
 ----
 include::finish/war/build.gradle[]
 ----
-The added [hotspot=dependency file=0]`dependency` element is the Java library module that implements the functions that you need for the unit converter.
-
-Although the [hotspot=parent file=0]`parent/child` structure is not normally needed for multi-module applications, adding it helps us to better organize all of the projects. This structure allows all of the child projects to make use of the plugins that are defined in the parent `build.gradle` file, without having to define them again in the child `build.gradle` files.
+The added [hotspot=projectJar file=0]`project` dependency and [hotspot=dependsOn file=0]`dependsOn` element declare the Java library project and module that implements the functions that you need for the unit converter.
 
 // =================================================================================================
 // Assembling multiple modules into an EAR file
@@ -137,7 +133,7 @@ To deploy the entire application on Open Liberty, first package the application.
 Navigate to the `ear` folder and find a template `build.gradle` file.
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the ear/build file.#
+#Replace the ear/build.gradle file.#
 `ear/build.gradle`
 ----
 ear/build.gradle
@@ -145,10 +141,12 @@ ear/build.gradle
 ----
 include::finish/ear/build.gradle[]
 ----
-Apply the `liberty` and `ear` plugin to configure the project as `ear`
-The `war` project is added as a Project dependency and `webModule` is specified in deployment descriptor to provide context path as `/converter`
 
-If no context path is specified, gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the application.xml file.
+Define the [hotspot=ear file=0]`ear` and [hotspot=liberty file=0]`liberty` plug-ins that you want to use. Configure the [hotspot=earConfig file=0]`ear` task with the deployment descriptor that provides the web module file name and the context root as `/converter`. Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as `sampleLibertyServer` and deploys the ear file from the path specified by the `copyLibsDirectory` variable.
+
+The [hotspot=war file=0]`war` project is added as a project dependency. The [hotspot=deployDependsOn file=0]`deploy` task depends on the `ear` task and the [hotspot=earDependsOn file=0]`ear` task depends on the `jar` task from the `jar` project and the `war` task from the `war` project.
+
+If no context path is specified, Gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the application.xml file.
 
 To deploy and run an EAR application on an Open Liberty instance, you need to provide a Liberty's `server.xml` configuration file.
 
@@ -171,12 +169,13 @@ You must configure the `server.xml` configuration file with the [hotspot=EARdefi
 
 == Aggregating the entire build
 
-Because you have multiple modules, aggregate the gradle projects to simplify the build process.
-`settings.gradle` is used to specify multiple modules
+Because you have multiple modules, aggregate the Gradle projects to simplify the build process.
+
+The `settings.gradle` is used to specify multiple modules.
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the start/settings file.#
+#Replace the start/settings.gradle file.#
 `settings.gradle`
 ----
 start/settings.gradle
@@ -184,13 +183,14 @@ start/settings.gradle
 ----
 include::finish/settings.gradle[]
 ----
-Include all project directories
 
-Create a parent [hotspot]`build.gradle` file under the `start` directory to link all of the child modules together. A template is provided for you.
+Include the [hotspot=includeJar hotspot=jarDir file=0]`jar`, [hotspot=includeWar hotspot=warDir file=0]`war`, and [hotspot=includeEar hotspot=earDir file=0]`ear` projects and their directories.
 
-[role="code_command hotspot", subs="quotes"]
+Create a parent [hotspot file=1]`build.gradle` file under the `start` directory to link all of the child modules together. A template is provided for you.
+
+[role="code_command hotspot file=1", subs="quotes"]
 ----
-#Replace the start/build file.#
+#Replace the start/build.gradle file.#
 `build.gradle`
 ----
 start/build.gradle
@@ -199,7 +199,7 @@ start/build.gradle
 include::finish/build.gradle[]
 ----
 
-Set the [hotspot=packaging file=0]`basic configuration` for the project. Apply [gradle-java-plugin file=0]`gradle-java-plugin` to all sub projects. This allows each child module to inherit the plug-ins, so that you can use the these to develop the modules.
+Set the [hotspot=packaging file=1]`basic configuration` for the project. Apply [gradle-java-plugin file=1]`gradle-java-plugin` to all sub projects. This allows each child module to inherit the plug-ins, so that you can use the these to develop the modules.
 
 
 
@@ -209,7 +209,7 @@ Set the [hotspot=packaging file=0]`basic configuration` for the project. Apply [
 
 == Developing the application
 
-You can now develop the application and the different modules together in dev mode by using the Liberty gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/dev.md#multiple-modules[Documentation^].
+You can now develop the application and the different modules together in dev mode by using the Liberty Gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/dev.md#multiple-modules[Documentation^].
 
 Navigate to the `start` directory to begin.
 // cloud hosted instructions
@@ -219,12 +219,22 @@ cd /home/project/guide-gradle-multimodules/start
 ```
 endif::[]
 
-To deploy your EAR application on Open Liberty and start in dev mode, run the gradle `libertyDev` goal from the start directory .
+When you run Open Liberty in https://openliberty.io/docs/latest/development-mode.html[dev mode^], dev mode listens for file changes and automatically recompiles and deploys your updates whenever you save a new change. Run the following task to start Open Liberty in dev mode:
 
-[role=command]
+[role="command"]
 ----
-./gradlew clean libertyRun
+./gradlew clean libertyDev
 ----
+
+After you see the following message, your Liberty instance is ready in dev mode:
+
+[role="no_copy"]
+----
+**************************************************************
+*    Liberty is running in dev mode.
+----
+
+Dev mode holds your command-line session to listen for file changes. Open another command-line session to continue, or open the project in your editor.
 
 === Updating the Java classes in different modules
 
@@ -348,7 +358,7 @@ cd /home/project/guide-gradle-multimodules/start
 ```
 endif::[]
 
-Since the modules are independent, you can re-build them individually by running `./gradlew clean build` from the corresponding `start` directory for each module.
+Because the modules are independent, you can re-build them individually by running `./gradlew clean build` from the corresponding `start` directory for each module.
 
 ifndef::cloud-hosted[]
 Or, run `./gradlew <child project>:build` from the start directory.
@@ -363,7 +373,7 @@ endif::[]
 
 == Great work! You're done!
 
-You built and tested a multi-module Java application for unit conversion with gradle on Open Liberty.
+You built and tested a multi-module Java application for unit conversion with Gradle on Open Liberty.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]

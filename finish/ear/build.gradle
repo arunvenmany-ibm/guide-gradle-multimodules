@@ -1,5 +1,9 @@
+// tag::ear[]
 apply plugin: 'ear'
+// end::ear[]
+// tag::liberty[]
 apply plugin: 'liberty'
+// end::liberty[]
 
 description = 'EAR Module'
 
@@ -13,7 +17,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.openliberty.tools:liberty-gradle-plugin:$lgpVersion"
+        classpath 'io.openliberty.tools:liberty-gradle-plugin:3.9.2'
     }
 }
 
@@ -23,21 +27,26 @@ repositories {
 }
 
 dependencies {
+    // tag::war[]
     deploy project(path:':war', configuration:'archives')
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
-    libertyRuntime group: runtimeGroup, name: kernelArtifactId, version: runtimeVersion
+    // end::war[]
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
 }
 
+// tag::earConfig[]
 ear {
-    archiveFileName = rootProject.name+"-"+getArchiveBaseName().get() +"-"+rootProject.version+ '.' + getArchiveExtension().get()
+    archiveFileName = rootProject.name + '-' + getArchiveBaseName().get() + '-' +
+                      rootProject.version + '.' + getArchiveExtension().get()
     deploymentDescriptor {
         webModule ('guide-gradle-multimodules-war-1.0-SNAPSHOT.war', '/converter')
     }
 }
+// end::earConfig[]
 
+// tag::libertyConfig[]
 liberty {
     server {
-        name = "ejbServers"
+        name = 'sampleLibertyServer'
         deploy {
             apps = [ear]
             copyLibsDirectory = file("${project.getLayout().getBuildDirectory().getAsFile().get()}/libs")
@@ -46,6 +55,11 @@ liberty {
         looseApplication = true
     }
 }
+// end::libertyConfig[]
 
+// tag::deployDependsOn[]
 deploy.dependsOn 'ear'
+// end::deployDependsOn[]
+// tag::earDependsOn[]
 ear.dependsOn ':jar:jar', ':war:war'
+// end::earDependsOn[]
