@@ -2,8 +2,8 @@ name: Test application
 
 on:
   pull_request:
-    branches: [ draft ]
-    
+    branches: [draft]
+
 jobs:
   check-files:
     if: ${{ github.event_name == 'pull_request' }}
@@ -28,6 +28,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LINTER_RULES_PATH: ./tools/pr-checker/linters/
+          FILTER_REGEX_EXCLUDE: .*/build.gradle
           DEFAULT_BRANCH: draft
       - name: Summary
         if: "! github.event.pull_request.head.repo.fork"

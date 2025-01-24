@@ -11,7 +11,7 @@ cat ./build.gradle
 ./gradlew installFeature
 ./gradlew deploy
 ./gradlew libertyStart
-wait 5
+sleep 5
 curl http://localhost:9080/converter/ | grep "Height Converters"
 ./gradlew libertyStop
 
