@@ -1,21 +1,31 @@
+// tag::allprojects[]
 allprojects  {
     group = 'io.openliberty.guides'
     version = '1.0-SNAPSHOT'
 }
+// end::allprojects[]
 
 subprojects {
+    // tag::java[]
     apply plugin: 'java'
+    // end::java[]
 
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    // tag::options[]
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 
     tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
         options.release.set(11)
     }
+    // end::options[]
 
+    // tag::repositories[]
     repositories {
         mavenLocal()
         mavenCentral()
     }
+    // end::repositories[]
 }

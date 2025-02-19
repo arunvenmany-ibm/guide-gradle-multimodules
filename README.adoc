@@ -8,7 +8,7 @@
 :projectid: gradle-multimodules
 :page-layout: guide-multipane
 :page-duration: 30 minutes
-:page-releasedate: 2025-01-29
+:page-releasedate: 2025-03-29
 :page-description: Learn how to build an application consisting of JAR, WAR, and EAR modules with Gradle
 :page-related-guides: ['gradle-intro']
 :page-seo-title: Building a multi-module enterprise Java application with Gradle and Open Liberty
@@ -199,7 +199,7 @@ start/build.gradle
 include::finish/build.gradle[]
 ----
 
-Set the [hotspot=packaging file=1]`basic configuration` for the project. Apply [gradle-java-plugin file=1]`gradle-java-plugin` to all sub projects. This allows each child module to inherit the plug-ins, so that you can use the these to develop the modules.
+Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply [hotspot=java file=1]`java` plugin and its [hotspot=options file=1]`options` to all sub-projects. The plugins and dependencies will be downloaded from the repositories that are specified in the [hotspot=repositories file=1]`repositories` configuration. Each child module inherits all the configurations.
 
 
 

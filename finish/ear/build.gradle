@@ -21,10 +21,6 @@ buildscript {
     }
 }
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
 
 dependencies {
     // tag::war[]
