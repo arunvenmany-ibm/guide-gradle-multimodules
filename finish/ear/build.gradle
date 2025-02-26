@@ -34,7 +34,9 @@ ear {
     archiveFileName = rootProject.name + '-' + getArchiveBaseName().get() + '-' +
                       rootProject.version + '.' + getArchiveExtension().get()
     deploymentDescriptor {
+        // tag::webModule[]
         webModule ('guide-gradle-multimodules-war-1.0-SNAPSHOT.war', '/converter')
+        // end::webModule[]
     }
 }
 // end::earConfig[]
@@ -42,10 +44,14 @@ ear {
 // tag::libertyConfig[]
 liberty {
     server {
+        // tag::sampleLibertyServer[]
         name = 'sampleLibertyServer'
+        // end::sampleLibertyServer[]
         deploy {
             apps = [ear]
+            // tag::copyLibsDirectory[]
             copyLibsDirectory = file("${project.getLayout().getBuildDirectory().getAsFile().get()}/libs")
+            // end::copyLibsDirectory[]
         }
         verifyAppStartTimeout = 30
         looseApplication = true

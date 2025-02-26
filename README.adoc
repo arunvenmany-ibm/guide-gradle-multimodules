@@ -67,14 +67,14 @@ To try out the application, first go to the `finish` directory and run the follo
 [role=command]
 ----
 cd finish
-./gradlew clean libertyPackage
+./gradlew libertyPackage
 ----
 
 To deploy your EAR application on Open Liberty, run the Gradle `libertyRun` task from the finish directory.
 
 [role=command]
 ----
-./gradlew clean libertyRun
+./gradlew libertyRun
 ----
 
 ifndef::cloud-hosted[]
@@ -142,11 +142,11 @@ ear/build.gradle
 include::finish/ear/build.gradle[]
 ----
 
-Define the [hotspot=ear file=0]`ear` and [hotspot=liberty file=0]`liberty` plug-ins that you want to use. Configure the [hotspot=earConfig file=0]`ear` task with the deployment descriptor that provides the web module file name and the context root as `/converter`. Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as `sampleLibertyServer` and deploys the ear file from the path specified by the `copyLibsDirectory` variable.
+Define the [hotspot=ear file=0]`ear` and [hotspot=liberty file=0]`liberty` plug-ins that you want to use. Configure the [hotspot=earConfig file=0]`ear` task with the deployment descriptor that provides the web module file name and the context root as [hotspot=webModule file=0]`/converter`. Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as [hotspot=sampleLibertyServer file=0]`sampleLibertyServer` and deploys the ear file from the path specified by the [hotspot=copyLibsDirectory file=0]`copyLibsDirectory` variable.
 
 The [hotspot=war file=0]`war` project is added as a project dependency. The [hotspot=deployDependsOn file=0]`deploy` task depends on the `ear` task and the [hotspot=earDependsOn file=0]`ear` task depends on the `jar` task from the `jar` project and the `war` task from the `war` project.
 
-If no context path is specified, Gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the application.xml file.
+If no context path is specified, Gradle automatically uses the WAR file artifactId ID as the context root for the application while generating the `application.xml` file.
 
 To deploy and run an EAR application on an Open Liberty instance, you need to provide a Liberty's `server.xml` configuration file.
 
@@ -223,7 +223,7 @@ When you run Open Liberty in https://openliberty.io/docs/latest/development-mode
 
 [role="command"]
 ----
-./gradlew clean libertyDev
+./gradlew libertyDev
 ----
 
 After you see the following message, your Liberty instance is ready in dev mode:
