@@ -65,3 +65,7 @@ deploy.dependsOn 'ear'
 // tag::earDependsOn[]
 ear.dependsOn ':jar:jar', ':war:war'
 // end::earDependsOn[]
+
+test{
+    useJUnitPlatform()
+}

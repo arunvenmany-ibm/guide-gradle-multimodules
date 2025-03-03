@@ -22,7 +22,7 @@ import java.net.URL;
 import org.junit.jupiter.api.Test;
 
 public class IT {
-    String port = System.getProperty("http.port");
+    String port = "9080";
     String war = "converter";
     String urlBase = "http://localhost:" + port + "/" + war + "/";
 
@@ -32,7 +32,7 @@ public class IT {
         String url = this.urlBase;
         HttpURLConnection con = testRequestHelper(url, "GET");
         assertEquals(200, con.getResponseCode(), "Incorrect response code from " + url);
-        assertTrue(testBufferHelper(con).contains("Enter the height in centimeters"),
+        assertTrue(testBufferHelper(con).contains("Enter the height in centimeter"),
                         "Incorrect response from " + url);
     }
     // end::testIndexPage[]
