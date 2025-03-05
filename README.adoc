@@ -201,7 +201,7 @@ start/build.gradle
 include::finish/build.gradle[]
 ----
 
-Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply [hotspot=java file=1]`java` plugin and its [hotspot=options file=1]`options` to all sub-projects. The plugins and dependencies will be downloaded from the repositories that are specified in the [hotspot=repositories file=1]`repositories` configuration. Each child module inherits all the configurations.
+Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply [hotspot=java file=1]`java` plugin, its [hotspot=options file=1]`options`, and [hotspot=junit file=1]`junit` dependencies to all sub-projects. The plugins and dependencies will be downloaded from the repositories that are specified in the [hotspot=repositories file=1]`repositories` configuration. Each child module inherits all the configurations.
 
 
 
@@ -354,10 +354,13 @@ BUILD SUCCESSFUL in 3s
 
 > Task :ear:libertyDev
 Tests finished.
-To run tests on demand, press the Enter key.
-
 ----
 
+You can find the test result of each module from their build directory:
+
+* `jar/build/reports/tests/test/index.html`
+* `ear/build/reports/tests/test/index.html`
+* `war/build/reports/tests/test/index.html`
 
 When you are done checking out the service, exit dev mode by pressing `CTRL+C` in the command-line session where you ran the Liberty.
 
@@ -367,7 +370,7 @@ When you are done checking out the service, exit dev mode by pressing `CTRL+C` i
 
 == Building the multi-module application
 
-You aggregated and developed the application. Now, you can run `./gradlew clean libertyPackage` once from the `start` directory and it will automatically build all your modules. This command creates a JAR file in the `jar/build` directory, a WAR file in the `war/build` directory, and an EAR file that contains the JAR and WAR files in the `ear/build` directory.
+You aggregated and developed the application. Now, you can run `./gradlew clean libertyPackage` once from the `start` directory and it will automatically build all your modules. This command creates a JAR file in the `jar/build/libs` directory, a WAR file in the `war/build/libs` directory, and an EAR file that contains the WAR file in the `ear/build/libs` directory.
 
 ifndef::cloud-hosted[]
 Run the following command from the start directory to build the entire application:

@@ -60,6 +60,9 @@ jobs:
       - name: Post tests
         if: always()
         run: |
+          sudo chmod -R +rx jar/build
+          sudo chmod -R +rx war/build
+          sudo chmod -R +rx ear/build
           logsPath=$(sudo find . -name "console.log" | grep ear);
           sudo cat "$logsPath" | sudo grep Launching
       - name: Archive server logs if failed
@@ -67,4 +70,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ear-logs
-          path: finish/ear/target/liberty/wlp/usr/servers/defaultServer/logs/
+          path: finish/ear/build/wlp/usr/servers/defaultServer/logs/
+      - name: Archive reports if failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: finish/**/build/reports/

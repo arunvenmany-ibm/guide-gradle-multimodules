@@ -18,7 +18,7 @@
     <h3>Enter the height in centimeter</h3>
 
     <form action="heights.jsp" method="post">
-        <input type="text" name="heightCm" /> cm <br> <input type="submit"
+        <input type="text" name="heightCm" /> cm <p/> <input type="submit"
             value="CHECK" />
     </form>
 

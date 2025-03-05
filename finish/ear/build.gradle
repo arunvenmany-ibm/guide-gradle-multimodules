@@ -26,7 +26,6 @@ dependencies {
     // tag::war[]
     deploy project(path:':war', configuration:'archives')
     // end::war[]
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
 }
 
 // tag::earConfig[]
@@ -53,11 +52,19 @@ liberty {
             copyLibsDirectory = file("${project.getLayout().getBuildDirectory().getAsFile().get()}/libs")
             // end::copyLibsDirectory[]
         }
+        var.'http.port' = '9080'
+        var.'https.port' = '9443'
         verifyAppStartTimeout = 30
         looseApplication = true
     }
 }
 // end::libertyConfig[]
+
+// tag::test[]
+test {
+    systemProperty 'http.port', liberty.server.var.'http.port'
+}
+// end::test[]
 
 // tag::deployDependsOn[]
 deploy.dependsOn 'ear'
@@ -65,7 +72,3 @@ deploy.dependsOn 'ear'
 // tag::earDependsOn[]
 ear.dependsOn ':jar:jar', ':war:war'
 // end::earDependsOn[]
-
-test{
-    useJUnitPlatform()
-}

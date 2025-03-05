@@ -22,7 +22,7 @@ import java.net.URL;
 import org.junit.jupiter.api.Test;
 
 public class IT {
-    String port = "9080";
+    String port = System.getProperty("http.port");
     String war = "converter";
     String urlBase = "http://localhost:" + port + "/" + war + "/";
 
