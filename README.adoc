@@ -77,11 +77,18 @@ To deploy your EAR application on Open Liberty, run the Gradle `libertyRun` task
 ./gradlew libertyRun
 ----
 
+After you see the following message, your Liberty instance is ready:
+
+[role="no_copy"]
+----
+The sampleLibertyServer server is ready to run a smarter planet.
+----
+
 ifndef::cloud-hosted[]
-Once the Liberty instance is running, you can find the application at the following URL: http://localhost:9080/converter/[http://localhost:9080/converter/^]
+When the Liberty instance is running, you can find the application at the following URL: http://localhost:9080/converter/[http://localhost:9080/converter/^]
 endif::[]
 ifdef::cloud-hosted[]
-Once the Liberty instance is running, click the following button to check out your service by visiting the ***/converter*** endpoint.
+When the Liberty instance is running, click the following button to check out your service by visiting the ***/converter*** endpoint.
 ::startApplication{port="9080" display="external" name="Visit application" route="/converter"}
 endif::[]
 
@@ -144,9 +151,9 @@ include::finish/ear/build.gradle[]
 
 Define the [hotspot=ear file=0]`ear` and [hotspot=liberty file=0]`liberty` plug-ins that you want to use. Configure the [hotspot=earConfig file=0]`ear` task with the deployment descriptor that provides the web module file name and the context root as [hotspot=webModule file=0]`/converter`.
 
-If no context path is specified, Gradle automatically uses the WAR file artifact ID as the context root for the application while generating the `application.xml` file. The default artifact ID is `{pojectName}-{moduleName}-{version}`. For this guide, it is `guide-gradle-multimodules-war-1.0-SNAPSHOT`.
+If no context path is specified, Gradle automatically uses the WAR file artifact ID as the context root for the application, when the `application.xml` file is being generated. The default artifact ID is `{pojectName}-{moduleName}-{version}`, like `guide-gradle-multimodules-war-1.0-SNAPSHOT`.
 
-Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as [hotspot=sampleLibertyServer file=0]`sampleLibertyServer` and deploys the ear file from the path specified by the [hotspot=copyLibsDirectory file=0]`copyLibsDirectory` variable.
+Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as [hotspot=sampleLibertyServer file=0]`sampleLibertyServer` and deploys the ear file from the path that is specified by the [hotspot=copyLibsDirectory file=0]`copyLibsDirectory` variable.
 
 The [hotspot=war file=0]`war` project is added as a project dependency. The [hotspot=deployDependsOn file=0]`deploy` task depends on the `ear` task and the [hotspot=earDependsOn file=0]`ear` task depends on the `jar` task from the `jar` project and the `war` task from the `war` project.
 
@@ -201,7 +208,7 @@ start/build.gradle
 include::finish/build.gradle[]
 ----
 
-Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply [hotspot=java file=1]`java` plugin, its [hotspot=options file=1]`options`, and [hotspot=junit file=1]`junit` dependencies to all sub-projects. The plugins and dependencies will be downloaded from the repositories that are specified in the [hotspot=repositories file=1]`repositories` configuration. Each child module inherits all the configurations.
+Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply the [hotspot=java file=1]`java` plug-in, its [hotspot=options file=1]`options`, and [hotspot=junit file=1]`junit` dependencies to all subprojects. The plug-ins and dependencies will be downloaded from the repositories that are specified in the [hotspot=repositories file=1]`repositories` configuration. Each child module inherits all the configurations.
 
 
 
@@ -280,16 +287,16 @@ Converter.java
 include::finish/jar/src/main/java/io/openliberty/guides/multimodules/lib/Converter.java[]
 ----
 
-Change the [hotspot=getFeetMethod file=1]`getFeet` method so that it converts from centimetres to feet, and the [hotspot=getInchesMethod file=1]`getInches` method so that it converts from centimetres to inches. Update the `sum`, `diff`, `product` and `quotient` functions so that they add, subtract, multiply, and divide 2 numbers respectively.
+Change the [hotspot=getFeetMethod file=1]`getFeet` method so that it converts from centimeters to feet, and the [hotspot=getInchesMethod file=1]`getInches` method so that it converts from centimeters to inches. Update the `sum`, `diff`, `product`, and `quotient` functions so that they add, subtract, multiply, and divide 2 numbers respectively.
 
 ifndef::cloud-hosted[]
-Now revisit the application at the http://localhost:9080/converter/[http://localhost:9080/converter/^] URL. Try entering a height in centimetres and see if it converts correctly.
+Now check out the application again at the http://localhost:9080/converter/[http://localhost:9080/converter/^] URL. Try entering a height in centimeters and see whether converts correctly.
 endif::[]
 ifdef::cloud-hosted[]
-Now revisit the application by visiting the ***/converter*** endpoint:
-::startApplication{port="9080" display="external" name="Visit application" route="/converter"}
+Now check out the application again at the ***/converter*** endpoint:
+::startApplication{port="9080" display="external" name="Check out the application" route="/converter"}
 
-Try entering a height in centimetres and see if it converts correctly.
+Try entering a height in centimeters and see if it converts correctly.
 endif::[]
 
 
@@ -370,7 +377,7 @@ When you are done checking out the service, exit dev mode by pressing `CTRL+C` i
 
 == Building the multi-module application
 
-You aggregated and developed the application. Now, you can run `./gradlew clean libertyPackage` once from the `start` directory and it will automatically build all your modules. This command creates a JAR file in the `jar/build/libs` directory, a WAR file in the `war/build/libs` directory, and an EAR file that contains the WAR file in the `ear/build/libs` directory.
+You have aggregated and developed the application. Now, you can run `./gradlew clean libertyPackage` from the `start` directory to build all your modules. This command creates a JAR file in the `jar/build/libs` directory, a WAR file in the `war/build/libs` directory, and an EAR file that contains the WAR file in the `ear/build/libs` directory.
 
 ifndef::cloud-hosted[]
 Run the following command from the start directory to build the entire application:
@@ -388,7 +395,7 @@ cd /home/project/guide-gradle-multimodules/start
 ```
 endif::[]
 
-Because the modules are independent, you can re-build them individually by running `./gradlew clean build` from the corresponding `start` directory for each module.
+Because the modules are independent, you can rebuild them individually by running `./gradlew clean build` from the corresponding `start` directory for each module.
 
 ifndef::cloud-hosted[]
 Or, run `./gradlew <child project>:build` from the start directory.
