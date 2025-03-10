@@ -319,7 +319,7 @@ The [hotspot=testHeightsPage file=0]`testHeightsPage` tests to check that the ap
 
 === Running the tests
 
-Because you started Open Liberty in dev mode, press the *enter/return* key to run the tests.
+Because you started Open Liberty in dev mode, press the `enter/return` key to run the tests.
 
 You will see the following output:
 
