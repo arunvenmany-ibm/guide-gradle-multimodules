@@ -184,10 +184,10 @@ The `settings.gradle` is used to specify multiple modules.
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the start/settings.gradle file.#
+#Replace the settings.gradle file.#
 `settings.gradle`
 ----
-start/settings.gradle
+settings.gradle
 [source, xml, linenums, role='code_column']
 ----
 include::finish/settings.gradle[]
@@ -199,10 +199,10 @@ Create a parent [hotspot file=1]`build.gradle` file under the `start` directory 
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
-#Replace the start/build.gradle file.#
+#Replace the build.gradle file.#
 `build.gradle`
 ----
-start/build.gradle
+build.gradle
 [source, xml, linenums, role='code_column']
 ----
 include::finish/build.gradle[]
@@ -220,7 +220,6 @@ Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply
 
 You can now develop the application and the different modules together in dev mode by using the Liberty Gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/dev.md#multiple-modules[Documentation^].
 
-Navigate to the `start` directory to begin.
 // cloud hosted instructions
 ifdef::cloud-hosted[]
 ```bash
@@ -248,8 +247,6 @@ Dev mode holds your command-line session to listen for file changes. Open anothe
 === Updating the Java classes in different modules
 
 Update the `HeightsBean` class to use the Java library module that implements the functions that you need for the unit converter.
-
-Navigate to the `start` directory.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
