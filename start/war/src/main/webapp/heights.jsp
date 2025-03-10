@@ -30,7 +30,7 @@
     <br>
 
     <p>
-        Height in feet and inche:
+        Height in feet and inches:
         <jsp:getProperty name="height" property="heightFeet" />
         feets
         <jsp:getProperty name="height" property="heightInches" />
