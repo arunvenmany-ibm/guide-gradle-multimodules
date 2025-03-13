@@ -218,7 +218,7 @@ Set the [hotspot=allprojects file=1]`basic configuration` for the project. Apply
 
 == Developing the application
 
-You can now develop the application and the different modules together in dev mode by using the Liberty Gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/dev.md#multiple-modules[Documentation^].
+You can now develop the application and the different modules together in dev mode by using the Liberty Gradle plug-in. To learn more about how to use dev mode with multiple modules, check out the https://github.com/OpenLiberty/ci.gradle/blob/main/docs/libertyDev.md#multi-project-builds[Documentation^].
 
 // cloud hosted instructions
 ifdef::cloud-hosted[]
