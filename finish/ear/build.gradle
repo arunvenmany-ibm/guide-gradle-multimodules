@@ -62,7 +62,9 @@ liberty {
 
 // tag::test[]
 test {
+    // tag::testHttpPort[]
     systemProperty 'http.port', liberty.server.var.'http.port'
+    // end::testHttpPort[]
     enabled = gradle.startParameter.taskNames.contains('test')
 }
 // end::test[]

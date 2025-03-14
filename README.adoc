@@ -107,7 +107,7 @@ After you are finished checking out the application, stop the Open Liberty insta
 
 To use a Java library in your web module, you must add a dependency relationship between the two modules.
 
-As you might have noticed, each module has its own `build.gradle` file. Each module has its own `build.gradle` file because each module is treated as an independent project. You can rebuild, reuse, and reassemble every module on its own.
+As you might have noticed, each module has its own `build.gradle` file because each module is treated as an independent project. You can rebuild, reuse, and reassemble every module on its own.
 
 Navigate to the `start` directory to begin.
 // cloud hosted instructions
@@ -151,13 +151,13 @@ include::finish/ear/build.gradle[]
 
 Define the [hotspot=ear file=0]`ear` and [hotspot=liberty file=0]`liberty` plug-ins that you want to use. Configure the [hotspot=earConfig file=0]`ear` task with the deployment descriptor that provides the web module file name and the context root as [hotspot=webModule file=0]`/converter`.
 
-If no context path is specified, Gradle automatically uses the WAR file artifact ID as the context root for the application, when the `application.xml` file is being generated. The default artifact ID is `{pojectName}-{moduleName}-{version}`, like `guide-gradle-multimodules-war-1.0-SNAPSHOT`.
+If no context path is specified, Gradle automatically uses the WAR file artifact ID as the context root for the application, when the `application.xml` file is being generated. The default artifact ID is `{projectName}-{moduleName}-{version}`, like `guide-gradle-multimodules-war-1.0-SNAPSHOT`.
 
 Configure the [hotspot=libertyConfig file=0]`liberty` task that creates the Liberty server name as [hotspot=sampleLibertyServer file=0]`sampleLibertyServer` and deploys the ear file from the path that is specified by the [hotspot=copyLibsDirectory file=0]`copyLibsDirectory` variable.
 
 The [hotspot=war file=0]`war` project is added as a project dependency. The [hotspot=deployDependsOn file=0]`deploy` task depends on the `ear` task and the [hotspot=earDependsOn file=0]`ear` task depends on the `jar` task from the `jar` project and the `war` task from the `war` project.
 
-To deploy and run an EAR application on an Open Liberty instance, you need to provide a Liberty's `server.xml` configuration file.
+To deploy and run an EAR application on an Open Liberty instance, you need to provide a Liberty `server.xml` configuration file.
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
@@ -316,6 +316,13 @@ The [hotspot=testIndexPage file=0]`testIndexPage` tests to check that you can ac
 
 The [hotspot=testHeightsPage file=0]`testHeightsPage` tests to check that the application can process the input value and calculate the result correctly.
 
+ear/build.gradle
+[source, xml, linenums, role='code_column']
+----
+include::finish/ear/build.gradle[]
+----
+
+The [hotspot= test file=1]`test` task configuration is already included in the [hotspot file=1]`ear/build.gradle` file for you. It passes the [hotspot=testHttpPort file=1]`http.port` value from the running Liberty server to the tests so they can connect to the application during execution.
 
 === Running the tests
 
