@@ -52,7 +52,9 @@ liberty {
             copyLibsDirectory = file("${project.getLayout().getBuildDirectory().getAsFile().get()}/libs")
             // end::copyLibsDirectory[]
         }
+        // tag::httpPort[]
         var.'http.port' = '9080'
+        // end::httpPort[]
         var.'https.port' = '9443'
         verifyAppStartTimeout = 30
         looseApplication = true
@@ -62,9 +64,7 @@ liberty {
 
 // tag::test[]
 test {
-    // tag::testHttpPort[]
     systemProperty 'http.port', liberty.server.var.'http.port'
-    // end::testHttpPort[]
     enabled = gradle.startParameter.taskNames.contains('test')
 }
 // end::test[]
