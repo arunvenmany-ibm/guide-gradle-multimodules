@@ -322,7 +322,7 @@ ear/build.gradle
 include::finish/ear/build.gradle[]
 ----
 
-The [hotspot=test file=1]`test` task configuration is already included in the [hotspot file=1]`ear/build.gradle` file for you. It passes the same [hotspot=httpPort file=1]`http.port` value used by the Liberty server to the tests so they can connect to the application during execution.
+The [hotspot=test file=1]`test` task configuration is already included in the [hotspot file=1]`ear/build.gradle` file for you. It passes the same [hotspot=httpPort file=1]`http.port` value that is used by the Liberty server to the tests so they can connect to the application during execution.
 
 === Running the tests
 
