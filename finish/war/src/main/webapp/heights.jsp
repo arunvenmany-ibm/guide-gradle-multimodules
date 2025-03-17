@@ -32,9 +32,9 @@
     <p>
         Height in feet and inches:
         <jsp:getProperty name="height" property="heightFeet" />
-        feets
+        ft
         <jsp:getProperty name="height" property="heightInches" />
-        inches
+        in
     </p>
 
 </body>
