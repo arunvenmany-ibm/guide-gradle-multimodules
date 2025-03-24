@@ -246,7 +246,9 @@ Dev mode holds your command-line session to listen for file changes. Open anothe
 
 === Updating the Java classes in different modules
 
-Update the `HeightsBean` class to use the Java library module that implements the functions that you need for the unit converter.
+To get the height conversion working correctly in the application, you'll need to update two Java classes: one in the web module and one in the library module. 
+
+First, update the `HeightsBean` class to use the Java library module that implements the functions that you need for the unit converter.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -271,7 +273,7 @@ Click the following button to check out the running application by visiting the 
 ::startApplication{port="9080" display="external" name="Visit application" route="/converter"}
 endif::[]
 
-Now try updating the converter so that it converts heights correctly, rather than returning 0.
+Note that the application currently returns 0 for height conversions because the logic in the converter hasn't been implemented yet. You'll fix this by updating the converter in the following step.
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
@@ -287,15 +289,14 @@ include::finish/jar/src/main/java/io/openliberty/guides/multimodules/lib/Convert
 Change the [hotspot=getFeetMethod file=1]`getFeet` method so that it converts from centimeters to feet, and the [hotspot=getInchesMethod file=1]`getInches` method so that it converts from centimeters to inches. Update the `sum`, `diff`, `product`, and `quotient` functions so that they add, subtract, multiply, and divide 2 numbers respectively.
 
 ifndef::cloud-hosted[]
-Now check out the application again at the http://localhost:9080/converter/[http://localhost:9080/converter/^] URL. Try entering a height in centimeters and see whether converts correctly.
+Now check out the application again at the http://localhost:9080/converter/[http://localhost:9080/converter/^] URL.
 endif::[]
 ifdef::cloud-hosted[]
 Now check out the application again at the ***/converter*** endpoint:
 ::startApplication{port="9080" display="external" name="Check out the application" route="/converter"}
-
-Try entering a height in centimeters and see if it converts correctly.
 endif::[]
 
+Try entering a height in centimeters and see if it converts correctly.
 
 === Testing the multi-module application
 
