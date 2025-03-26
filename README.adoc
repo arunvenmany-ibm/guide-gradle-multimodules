@@ -36,9 +36,9 @@ In this guide, you will learn how to:
 
 * establish a dependency between a web module and a Java library module,
 * use Gradle to package the WAR file and the JAR file into an EAR file so that you can run and test the application on Open Liberty, and
-* use Liberty Gradle plug-in to develop a multi-module application in https://openliberty.io/docs/latest/development-mode.html#_run_multi_module_gradle_projects_in_dev_mode[dev mode^] without having to prebuild the JAR and WAR files. In dev mode, your changes are automatically picked up by the running Liberty instance.
+* use the Liberty Gradle plug-in to develop a multi-module application in https://openliberty.io/docs/latest/development-mode.html#_run_multi_module_gradle_projects_in_dev_mode[dev mode^] without having to prebuild the JAR and WAR files. In dev mode, your changes are automatically picked up by the running Liberty instance.
 
-You will build a unit converter application that converts heights from centimeters into feet and inches. The application will request the user to enter a height value in centimeters. Then, the application processes the input by using functions that are found in the JAR file to return the height value in imperial units.
+You will build a unit converter application that converts heights from centimeters into feet and inches. The application requests the user to enter a height value in centimeters. Then, the application processes the input by using functions that are found in the JAR file to return the height value in imperial units.
 
 
 // =================================================================================================
@@ -48,7 +48,7 @@ You will build a unit converter application that converts heights from centimete
 [role=command]
 include::{common-includes}/gitclone.adoc[]
 
-Access partial implementation of the application from the `start` folder. This folder includes a web module in the `war` folder, a Java library in the `jar` folder, and template files in the `ear` folder. However, the Java library and the web module are independent projects, and you will need to complete the following steps to implement the application:
+You can access a partial implementation of the application from the `start` folder. This folder includes a web module in the `war` folder, a Java library in the `jar` folder, and template files in the `ear` folder. However, the Java library and the web module are independent projects, and you will need to complete the following steps to implement the application:
 
 1. Add a dependency relationship between the two modules.
 
@@ -92,7 +92,7 @@ When the Liberty instance is running, click the following button to check out yo
 ::startApplication{port="9080" display="external" name="Visit application" route="/converter"}
 endif::[]
 
-After you are finished checking out the application, stop the Open Liberty instance by pressing `CTRL+C` in the command-line session where you ran the Liberty. Alternatively, you can run the `libertyStop` task from the `finish` directory in another command-line session:
+After you finish checking out the application, stop the Open Liberty instance by pressing **CTRL+C** in the command-line session where you ran Liberty. Alternatively, you can run the `libertyStop` task from the `finish` directory in another command-line session:
 
 [role=command]
 ----
@@ -246,7 +246,9 @@ Dev mode holds your command-line session to listen for file changes. Open anothe
 
 === Updating the Java classes in different modules
 
-Update the `HeightsBean` class to use the Java library module that implements the functions that you need for the unit converter.
+To get the height conversion working correctly in the application, you'll need to update two Java classes: one in the web module and one in the library module. 
+
+First, update the `HeightsBean` class to use the Java library module that implements the functions that you need for the unit converter.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -271,7 +273,7 @@ Click the following button to check out the running application by visiting the 
 ::startApplication{port="9080" display="external" name="Visit application" route="/converter"}
 endif::[]
 
-Now try updating the converter so that it converts heights correctly, rather than returning 0.
+Note that the application currently returns 0 for height conversions because the logic in the converter hasn't been implemented yet. You'll fix this by updating the converter in the following step.
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
@@ -287,15 +289,14 @@ include::finish/jar/src/main/java/io/openliberty/guides/multimodules/lib/Convert
 Change the [hotspot=getFeetMethod file=1]`getFeet` method so that it converts from centimeters to feet, and the [hotspot=getInchesMethod file=1]`getInches` method so that it converts from centimeters to inches. Update the `sum`, `diff`, `product`, and `quotient` functions so that they add, subtract, multiply, and divide 2 numbers respectively.
 
 ifndef::cloud-hosted[]
-Now check out the application again at the http://localhost:9080/converter/[http://localhost:9080/converter/^] URL. Try entering a height in centimeters and see whether converts correctly.
+Now check out the application again at the http://localhost:9080/converter/[http://localhost:9080/converter/^] URL.
 endif::[]
 ifdef::cloud-hosted[]
 Now check out the application again at the ***/converter*** endpoint:
 ::startApplication{port="9080" display="external" name="Check out the application" route="/converter"}
-
-Try entering a height in centimeters and see if it converts correctly.
 endif::[]
 
+Try entering a height in centimeters and see if it converts correctly.
 
 === Testing the multi-module application
 
@@ -326,7 +327,7 @@ The [hotspot=test file=1]`test` task configuration is already included in the [h
 
 === Running the tests
 
-Because you started Open Liberty in dev mode, press the `enter/return` key to run the tests.
+Because you started Open Liberty in dev mode, press the **enter/return** key to run the tests.
 
 You will see the following output:
 
@@ -373,7 +374,7 @@ You can find the test result of each module from their build directory:
 * `ear/build/reports/tests/test/index.html`
 * `war/build/reports/tests/test/index.html`
 
-When you are done checking out the service, exit dev mode by pressing `CTRL+C` in the command-line session where you ran the Liberty.
+When you are done checking out the service, exit dev mode by pressing **CTRL+C** in the command-line session where you ran Liberty.
 
 // =================================================================================================
 // Building the multi-module application
@@ -381,7 +382,7 @@ When you are done checking out the service, exit dev mode by pressing `CTRL+C` i
 
 == Building the multi-module application
 
-You have aggregated and developed the application. Now, you can run `./gradlew clean libertyPackage` from the `start` directory to build all your modules. This command creates a JAR file in the `jar/build/libs` directory, a WAR file in the `war/build/libs` directory, and an EAR file that contains the WAR file in the `ear/build/libs` directory.
+You aggregated and developed the application. Now, you can run `./gradlew clean libertyPackage` from the `start` directory to build all your modules. This command creates a JAR file in the `jar/build/libs` directory, a WAR file in the `war/build/libs` directory, and an EAR file that contains the WAR file in the `ear/build/libs` directory.
 
 ifndef::cloud-hosted[]
 Run the following command from the `start` directory to build the entire application:
